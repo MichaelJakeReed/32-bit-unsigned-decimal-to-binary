@@ -7,9 +7,11 @@ public class binary {
         Scanner in = new Scanner(System.in);
         int num = -1;
         int remainder;
+        int mostSig = 0;
+        int leastSig = 0;
 
         //get num to convert from user
-        System.out.println("This is an 32 bit unsigned converter the max number that can be intered is 2,147,483,647");
+        System.out.println("This is an 31 bit unsigned converter the max number that can be intered is 2,147,483,647");
         System.out.println("Please enter a whole number and a number >= 0:");
 
         //makes user repeat until a number that works is satisfied
@@ -22,7 +24,7 @@ public class binary {
                 if (num >= 0 && num <= 2147483647) {
                     break;
                 } else {
-                    System.out.println("Number must be >= 0. Try again:");
+                    System.out.println("Number must be >= 0 and <= 2,147,483,647. Try again:");
                 }
             }
         }
@@ -38,6 +40,22 @@ public class binary {
             i++;
         }
 
+        //least sig bit
+        for(i = 0; i < binaryNum.length; i++){
+            if(binaryNum[i] == 1){
+                leastSig = i;
+                i = binaryNum.length;
+                }
+        }
+        
+        //most sig bit
+        for(i = binaryNum.length - 1; i  >=  0; i--){
+            if(binaryNum[i] == 1){
+                mostSig = i;
+                break;
+                }
+        }
+ 
         //flip the array to get actuall binary
         for(i = 0; i < binaryNum.length / 2; i++){
             int t = binaryNum[i];
@@ -46,9 +64,15 @@ public class binary {
         } 
 
         //print answer
+        
         int arrPrint = binaryNum.length;
         for(i = 1; i < arrPrint; i++){
             System.out.print(binaryNum[i]);
         } 
+        
+        System.out.println("\nLeast significant bit is in the " + leastSig + " place or 2^" + leastSig);
+        System.out.println("Most significant bit is in the " + mostSig + " place or 2^" + mostSig);
     }
 }
+
+
